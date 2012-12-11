@@ -31,15 +31,15 @@
       //  With recent updates, we can use the Flash player in Android browsers now, if they have it.  The android variable
       //  has been altered to check both for the Android OS and if Flash installed in order to be true
       //  Android still wonky with HTML5 audio as of 3/2012
-      if(!htmlaudio || opera || android )
+      // Android does HTML5 Audio!!  11/2012
+      if(!htmlaudio || (firefox && settings.ogg == ''))// || opera || android )
       { 
         var div = '';
         div  = '<';
         div += 'object type="application/x-shockwave-flash" data="'+ settings.player +'" width="200" height="20">\n';
         div += '  <param name="movie" value="'+ settings.player +'" />\n';
-        div += '  <param name="bgcolor" value="#FFFFFF" />\n';
-//        div += '  <param name="FlashVars" value="mp3='+ settings.mp3 +'&amp;autoplay='+ settings.autoplay +'&amp;showstop=1" />\n';
-        div += '  <param name="FlashVars" value="mp3=media/flash.mp3&amp;autoplay='+ settings.autoplay +'&amp;showstop=1" />\n';
+        div += '  <param name="bgcolor" value="#000000" />\n';
+        div += '  <param name="FlashVars" value="mp3='+settings.mp3+'&amp;buttoncolor=ffff00&slidercolor=cccccc&loadingcolor=CC0000" />\n';
         div += '</';
         div += 'object>\n';
         $(this).replaceWith(div);
@@ -54,7 +54,7 @@
       {
         var div = '';
         div  = '<';
-        div += 'audio id="'+ settings.id +'" '+(settings.autoplay ? 'autoplay="autoplay"': '') + ' ' + (settings.controls ? 'controls="controls"' : '') + '>\n';
+        div += 'audio id="'+ settings.id +'" '+(settings.autoplay ? 'autoplay="autoplay"': '') + ' ' + (settings.controls ? 'controls="controls"' : '') + ' style="width:100%;">\n';
         div += '  <p>Your browser doesn\'t support HTML5 or Flash.</p>\n';
         div += '</';
         div += 'audio>\n';
